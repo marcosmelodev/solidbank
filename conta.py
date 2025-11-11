@@ -1,50 +1,32 @@
 
 class Conta:
-    def __init__(self, numero, cliente):
-        self._saldo = 0
-        self._numero = numero
-        self._agencia = "0001"
-        self._cliente = cliente
-     
-
-    @classmethod
-    def nova_conta(cls, cliente, numero):
-        return cls(numero, cliente)
-
-    @property
-    def saldo(self):
-        return self._saldo
+    def __init__(self, cliente: Cliente, numero: int, agencia: str = "0001"):
+        self.id: Optional[int] = None
+        self.numero = numero
+        self.agencia = agencia
+        self.saldo: float = 0.0
+        self.cliente = cliente
+        self.historico = Historico()
     
-    @property
-    def numero(self):
-        return self._numero
+    def saldo_atual(self) -> float:
+        """Retorna o saldo atual da conta"""
+        return self.saldo
     
-    @property
-    def agencia(self):
-        return self._agencia
+    @abstractmethod
+    def sacar(self, valor: float) -> bool:
+        """Método abstrato para saque (deve ser implementado pelas subclasses)"""
+        pass
     
-    @property
-    def cliente(self):
-        return self._cliente
-    
-    def sacar(self, valor):
-        saldo = self.saldo
-        excedeu_saldo = valor > saldo
-
-        if excedeu_saldo:
-            print("\n Saldo insuficiente")
-        elif valor > 0:
-            self._saldo -= valor
-            print("\n Saque realizado com sucesso!")
-            return True
-        else:
-            print(" O valor informado é inválido.")
-
-    def depositar(self, valor):
-        if valor > 0:
-            self.saldo += valor
-            print(" Depósito realizado com sucesso!")
-        else:
-            print("Operação falhou. O valor informado é inválido.")
+    def depositar(self, valor: float) -> bool:
+        """Realiza um depósito na conta"""
+        if valor <= 0:
+            print("❌ Valor do depósito deve ser positivo!")
             return False
         
+        self.saldo += valor
+        print(f"✅ Depósito de R$ {valor:.2f} realizado com sucesso!")
+        return True
+    
+    def nova_conta(self, cliente: Cliente, numero: int) -> 'Conta':
+        """Factory method para criar nova conta"""
+        return type(self)(cliente, numero, self.agencia)
