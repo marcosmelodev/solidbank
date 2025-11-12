@@ -1,5 +1,5 @@
 
-from cliente import Cliente
+from models.cliente import Cliente
 
 
 class Pessoa_Fisica(Cliente):

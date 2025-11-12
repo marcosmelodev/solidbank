@@ -1,90 +1,66 @@
-def menu_principal():
-    """Exibe o menu principal"""
-    print("\n" + "="*50)
-    print("SISTEMA BANCÁRIO".center(50))
-    print("="*50)
-    print("1. Criar novo cliente")
-    print("2. Criar conta corrente")
-    print("3. Depositar")
-    print("4. Sacar")
-    print("5. Extrato")
-    print("0. Sair")
-    print("="*50)
-    return input("Escolha uma opção: ")
+from utils.menu import exibir_menu
 
-
-def main():
-    """Função principal da aplicação"""
-    # Inicializar banco de dados
-    db_connection = DatabaseConnection()
-    db_manager = DatabaseManager(db_connection)
-    db_manager.criar_tabelas()
+print("\\n🏦 Bem-vindo ao Banco Digital!")
     
-    # Inicializar serviço
-    banco_service = BancoService(DatabaseConnection())
-    
-    print("\n🏦 Bem-vindo ao Sistema Bancário!")
-    
-    while True:
-        opcao = menu_principal()
+while True:
+        opcao = exibir_menu()
         
         if opcao == "1":
-            print("\n--- CRIAR NOVO CLIENTE ---")
-            nome = input("Nome: ")
-            cpf = input("CPF: ")
-            data_nasc = input("Data de nascimento (YYYY-MM-DD): ")
-            endereco = input("Endereço: ")
-            
-            banco_service.criar_cliente(nome, cpf, data_nasc, endereco)
+            nome = input("\\nNome do cliente: ")
+            cpf = input("CPF (apenas números): ")
+            banco.criar_cliente(nome, cpf)
         
         elif opcao == "2":
-            print("\n--- CRIAR CONTA CORRENTE ---")
-            cpf = input("CPF do cliente: ")
-            cliente = banco_service.cliente_repo.buscar_por_cpf(cpf)
-            
-            if not cliente:
-                print("❌ Cliente não encontrado!")
-                continue
-            
-            numero = int(input("Número da conta: "))
-            banco_service.criar_conta_corrente(cliente, numero)
+            cpf = input("\\nCPF do cliente: ")
+            print("\\nTipo de conta:")
+            print("[1] Conta Corrente")
+            print("[2] Conta Poupança")
+            tipo = input("Escolha: ")
+            banco.criar_conta(cpf, tipo)
         
         elif opcao == "3":
-            print("\n--- DEPOSITAR ---")
-            numero = int(input("Número da conta: "))
-            valor = float(input("Valor do depósito: R$ "))
-            
-            conta = banco_service.conta_repo.buscar_por_numero(numero)
+            numero = int(input("\\nNúmero da conta: "))
+            conta = banco.conta_repo.buscar_por_numero(numero)
             if conta:
-                deposito = Deposito(valor)
-                banco_service.realizar_transacao(conta, deposito)
+                valor = float(input("Valor do depósito: R$ "))
+                banco.realizar_transacao(conta, "DEPOSITO", valor)
             else:
                 print("❌ Conta não encontrada!")
         
         elif opcao == "4":
-            print("\n--- SACAR ---")
-            numero = int(input("Número da conta: "))
-            valor = float(input("Valor do saque: R$ "))
-            
-            conta = banco_service.conta_repo.buscar_por_numero(numero)
+            numero = int(input("\\nNúmero da conta: "))
+            conta = banco.conta_repo.buscar_por_numero(numero)
             if conta:
-                saque = Saque(valor)
-                banco_service.realizar_transacao(conta, saque)
+                valor = float(input("Valor do saque: R$ "))
+                banco.realizar_transacao(conta, "SAQUE", valor)
             else:
                 print("❌ Conta não encontrada!")
         
         elif opcao == "5":
-            print("\n--- EXTRATO ---")
-            numero = int(input("Número da conta: "))
-            banco_service.exibir_extrato(numero)
+            numero = int(input("\\nNúmero da conta: "))
+            conta = banco.conta_repo.buscar_por_numero(numero)
+            if conta:
+                banco.carregar_extrato(conta)
+            else:
+                print("❌ Conta não encontrada!")
+        
+        elif opcao == "6":
+            cpf = input("\\nCPF do cliente: ")
+            cliente = banco.cliente_repo.buscar_por_cpf(cpf)
+            if cliente:
+                contas = banco.conta_repo.listar_contas_cliente(cliente.id)
+                print(f"\\n📋 Contas de {cliente.nome}:")
+                for conta in contas:
+                    print(f"  • {conta.get_tipo()} - Conta: {conta.numero} - Saldo: R$ {conta.saldo:.2f}")
+            else:
+                print("❌ Cliente não encontrado!")
         
         elif opcao == "0":
-            print("\n👋 Obrigado por usar nosso sistema!")
+            print("\\n👋 Obrigado por usar o Banco Digital!")
             break
         
         else:
-            print("❌ Opção inválida!")
-
+            print("\\n❌ Opção inválida!")
 
 if __name__ == "__main__":
     main()
