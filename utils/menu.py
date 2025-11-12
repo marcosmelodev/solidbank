@@ -1,7 +1,7 @@
 def exibir_menu():
-    print("\\n" + "="*50)
-    print("         BANCO DIGITAL - SISTEMA")
-    print("="*50)
+    print("\n" + "="*40)
+    print("        SOLID BANK   ")
+    print("="*40)
     print("[1] Cadastrar Cliente")
     print("[2] Criar Conta")
     print("[3] Depositar")
@@ -9,5 +9,5 @@ def exibir_menu():
     print("[5] Extrato")
     print("[6] Listar Contas")
     print("[0] Sair")
-    print("="*50)
+    print("="*40)
     return input("Escolha uma opção: ")
