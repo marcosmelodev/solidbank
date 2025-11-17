@@ -1,6 +1,6 @@
 # 🏦 Solid Bank
 
-Sistema bancário desenvolvido em Python puro, aplicando os princípios da Programação Orientada a Objetos (POO) e SOLID.
+API REST de um Sistema bancário desenvolvido em Java, aplicando os princípios da Programação Orientada a Objetos (POO) e SOLID.
 
 ## 📋 Descrição
 
@@ -13,9 +13,9 @@ Criar e gerenciar contas bancárias
 
 Registrar depósitos e saques
 
-Consultar saldo e extrato
+Consultar extrato
 
-Histórico de transações armazenado em lista de dicionários
+Histórico de transações armazenado em lista.
 
 ## 🧩 Estrutura do Projeto
 
@@ -32,4 +32,4 @@ Separação clara de responsabilidades
 
 ## 💡Objetivo
 
-Servir como base de estudo e prática de boas práticas de desenvolvimento orientado a objetos em Python.
+Servir como base de estudo e prática de boas práticas de desenvolvimento orientado a objetos em Java com Spring Boot.
