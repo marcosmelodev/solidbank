@@ -10,6 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * CONTROLLER: ClienteController
+ * Expõe endpoints REST para operações de cliente
+ *
+ * Endpoints:
+ * POST   /api/clientes           - Criar cliente
+ * GET    /api/clientes           - Listar todos
+ * GET    /api/clientes/{id}      - Buscar por ID
+ * GET    /api/clientes/cpf/{cpf} - Buscar por CPF/CNPJ
+ */
 @RestController
 @RequestMapping("/api/clientes")
 @RequiredArgsConstructor

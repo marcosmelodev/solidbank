@@ -8,6 +8,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * REPOSITORY: ClienteRepository
+ * Interface de acesso aos dados de Cliente
+ *
+ * Responsabilidades:
+ * - Realizar operações CRUD em Cliente
+ * - Buscar clientes por CPF/CNPJ
+ * - Buscar clientes por email
+ * - Listar clientes ativos
+ *
+ * Spring Data JPA gera automaticamente a implementação
+ */
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Optional<Cliente> findByCpfCnpj(String cpfCnpj);

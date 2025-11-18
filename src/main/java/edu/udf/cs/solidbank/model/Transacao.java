@@ -9,6 +9,16 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * ENTIDADE: Transacao
+ * Representa uma transação bancária
+ * Mapeamento: Tabela 'transacao'
+ *
+ * Responsabilidades:
+ * - Registrar todas as movimentações financeiras
+ * - Manter histórico auditável de operações
+ * - Relacionar-se com contas origem e destino
+ */
 @Entity
 @Table(name = "transacao")
 @Data

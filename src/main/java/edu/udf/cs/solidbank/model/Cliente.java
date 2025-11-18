@@ -9,7 +9,16 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+/**
+ * ENTIDADE: Cliente
+ * Representa um cliente do banco (pessoa física ou jurídica)
+ * Mapeamento: Tabela 'cliente'
+ *
+ * Responsabilidades:
+ * - Armazenar dados cadastrais do cliente
+ * - Relacionar-se com suas contas bancárias
+ * - Validar unicidade de CPF/CNPJ
+ */
 @Entity
 @Data
 @NoArgsConstructor

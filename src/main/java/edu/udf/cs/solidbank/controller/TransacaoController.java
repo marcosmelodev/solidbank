@@ -11,6 +11,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * CONTROLLER: TransacaoController
+ * Expõe endpoints REST para operações de transação
+ *
+ * Endpoints:
+ * POST   /api/transacoes/depositar   - Realizar depósito
+ * POST   /api/transacoes/sacar       - Realizar saque
+ * POST   /api/transacoes/transferir  - Realizar transferência
+ * GET    /api/transacoes/extrato/{numero} - Gerar extrato
+ */
 @RestController
 @RequestMapping("/api/transacoes")
 @RequiredArgsConstructor

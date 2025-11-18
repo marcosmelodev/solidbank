@@ -10,22 +10,31 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * SERVICE: ClienteService
+ * Gerencia operações relacionadas a clientes
+ *
+ * Responsabilidades:
+ * - Criar novos clientes
+ * - Atualizar dados cadastrais
+ * - Buscar clientes
+ * - Validar CPF/CNPJ único
+ * - Ativar/desativar clientes
+ */
 @Service
 @RequiredArgsConstructor
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
 
-//    public ClienteService(ClienteRepository clienteRepository) {
-//        this.clienteRepository = clienteRepository;
-//    }
 
     @Transactional
     public DadosCliente criarCliente(DadosCliente dados){
+        // Validar se CPF/CNPJ já existe
         if (clienteRepository.existsByCpfCnpj(dados.cpfCnpj())){
             throw new RuntimeException("CPF/CNPJ já cadstrado");
         }
-
+        // Criar cliente
         Cliente cliente = Cliente.builder()
                 .nome(dados.nome())
                 .cpfCnpj(dados.cpfCnpj())

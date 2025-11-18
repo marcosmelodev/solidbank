@@ -7,6 +7,22 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+/**
+ * ENTIDADE: Conta
+ * Representa uma conta bancária
+ * Mapeamento: Tabela 'conta'
+ *
+ * Responsabilidades:
+ * - Armazenar informações da conta (número, saldo, tipo)
+ * - Garantir que cliente tenha apenas uma conta de cada tipo
+ * - Relacionar-se com cliente e transações
+ * - Manter histórico de transações
+ *
+ * REGRA DE NEGÓCIO IMPORTANTE:
+ * Cada cliente pode ter NO MÁXIMO uma conta de cada tipo
+ * (garantido pela constraint UNIQUE no banco)
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

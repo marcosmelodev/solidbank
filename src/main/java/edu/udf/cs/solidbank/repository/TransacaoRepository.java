@@ -6,6 +6,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * REPOSITORY: TransacaoRepository
+ * Interface de acesso aos dados de Transacao
+ *
+ * Responsabilidades:
+ * - Realizar operações CRUD em Transacao
+ * - Buscar transações por conta
+ * - Buscar transações por período
+ * - Gerar extratos
+ */
 @Repository
 public interface TransacaoRepository extends JpaRepository<Transacao, Long> {
     List<Transacao> findByContaOrigemIdOrContaDestinoIdOrderByDataTransacaoDesc(

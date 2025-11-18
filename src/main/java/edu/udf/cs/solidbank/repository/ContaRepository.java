@@ -9,6 +9,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * REPOSITORY: ContaRepository
+ * Interface de acesso aos dados de Conta
+ *
+ * Responsabilidades:
+ * - Realizar operações CRUD em Conta
+ * - Buscar contas por cliente
+ * - Buscar contas por tipo
+ * - Verificar existência de conta de determinado tipo para cliente
+ * - Listar contas ativas
+ */
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
     Optional<Conta> findByNumeroConta(String numeroConta);

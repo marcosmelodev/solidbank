@@ -16,6 +16,18 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * SERVICE: TransacaoService
+ * Gerencia todas as transações bancárias
+ *
+ * Responsabilidades:
+ * - Realizar depósitos
+ * - Realizar saques (com validação de saldo)
+ * - Realizar transferências entre contas
+ * - Registrar histórico de transações
+ * - Gerar extratos
+ *
+ */
 @Service
 @RequiredArgsConstructor
 public class TransacaoService {

@@ -14,6 +14,17 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * SERVICE: ContaService
+ * Gerencia operações relacionadas a contas bancárias
+ *
+ * Responsabilidades:
+ * - Abrir novas contas (corrente, poupança, jurídica)
+ * - Validar regra: 1 conta de cada tipo por cliente
+ * - Buscar contas por cliente
+ * - Consultar saldo
+ * - Gerar número de conta único
+ */
 @Service
 @RequiredArgsConstructor
 public class ContaService {
@@ -21,6 +32,7 @@ public class ContaService {
     private final ContaRepository contaRepository;
     private final ClienteRepository clienteRepository;
 
+    // Validar se cliente existe
     @Transactional
     public DadosConta abrirConta(Long clienteId, TipoConta tipoConta){
         //Validar se o cliente existe

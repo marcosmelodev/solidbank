@@ -12,6 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * CONTROLLER: ContaController
+ * Expõe endpoints REST para operações de conta
+ *
+ * Endpoints:
+ * POST   /api/contas/abrir         - Abrir nova conta
+ * GET    /api/contas/{numero}      - Buscar por número
+ * GET    /api/contas/cliente/{id}  - Listar contas do cliente
+ * GET    /api/contas/{numero}/saldo - Consultar saldo
+ */
 @RestController
 @RequestMapping("/api/contas")
 @RequiredArgsConstructor
